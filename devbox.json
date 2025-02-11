@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.7/.schema/devbox.schema.json",
+  "packages": [
+    "doctl@latest",
+    "envsubst@latest",
+    "gh@latest",
+    "go@latest",
+    "go-task@latest",
+    "gum@latest",
+    "jq@latest",
+    "k9s@latest",
+    "kind@latest",
+    "kluctl@latest",
+    "ko@latest",
+    "kubectl@latest",
+    "kubectx@latest",
+    "kubernetes-helm@latest",
+    "kustomize@latest",
+    "oras@latest",
+    "nodejs_20@latest",
+    "poetry@latest",
+    "python312@latest",
+    "tilt@latest",
+    "yq-go@latest",
+    "act@latest",
+    "kubent@latest"
+  ],
+  "env": {},
+  "shell": {
+  "init_hook": [
+      
+      "set -o allexport; source .aws_env; set +o allexport",
+      "aws_account_name=$(aws sts get-caller-identity --query 'Arn' --output text | awk -F '/' '{print $NF}')",
+      "aws_account_number=$(aws sts get-caller-identity --query 'Account' --output text)",
+      "aws_region=$(aws configure get region)",
+      "echo -e \"\\033[1;32mWelcome to devbox!\\033[0m \\033[1;34mLogged in as AWS user:\\033[0m \\033[1;33m$aws_account_name\\033[0m\"",
+      "echo -e \"\\033[1;34mAWS Account Number:\\033[0m \\033[1;33m$aws_account_number\\033[0m\"",
+      "echo -e \"\\033[1;34mAWS Region:\\033[0m \\033[1;33m$aws_region\\033[0m\""
+],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  },
+  "include": []
+}
+
